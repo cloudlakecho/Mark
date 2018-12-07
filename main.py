@@ -1,6 +1,6 @@
 
 # main.py in Anthony-Stockholm 
-# Cloud Cho May 26, 2018 - Perfomr PCA
+# Cloud Cho May 26, 2018 - Perfomr Pricipal Component Analysis, PCA
 #
 # Error:
 #   error exist
