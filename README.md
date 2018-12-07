@@ -1,2 +1,2 @@
-# Anthony-Stockholm
-To detect US stock market surge using pattern analysis
+# Mark
+To Generate a story using Recurrent Neural Network
