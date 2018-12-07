@@ -1,5 +1,5 @@
 
-# main.py in Benjamin project
+# lstm.py in Benjamin project
 # Clouc Cho May 6, 2018 ~ - Generate text from input story
 # source:
 #   https://machinelearningmastery.com/text-generation-lstm-recurrent-neural-networks-python-keras/
