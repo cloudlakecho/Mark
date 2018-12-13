@@ -64,16 +64,3 @@ def train_model():
 	callbacks_list = [checkpoint]
 	# fit the model
 	model.fit(X, y, epochs=20, batch_size=128, callbacks=callbacks_list)
-
-#
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
-#
-def main():
-	file_name = raw_input("Please, give input text file, thanks.")
-	data_manipulation(file_name)
-	make_dataset()
-	train_model()
-
-
-if __name__ == '__main__':
-    main()
