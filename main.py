@@ -1,11 +1,12 @@
 
-# main.py in Mark 
+# main.py in Mark
 # Cloud Cho December 7, 2018 - To generate story
 #
 # Error:
-#   
-# 
+#
+#
 # Comment:
+#
 #
 
 import numpy as np
@@ -30,7 +31,7 @@ from tool import lstm
 #
 def main():
 	file_name = raw_input("Please, give input text file, thanks.")
-	data_manipulation(file_name)
+	lstm.data_manipulation(file_name)
 	make_dataset()
 	train_model()
 

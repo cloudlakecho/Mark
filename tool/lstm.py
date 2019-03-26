@@ -1,11 +1,12 @@
 
 # lstm.py in Benjamin project
 # Clouc Cho May 6, 2018 ~ - Generate text from input story
-# source:
+#
+# Reference:
 #   https://machinelearningmastery.com/text-generation-lstm-recurrent-neural-networks-python-keras/
 # 	Small LSTM Network to Generate Text for Alice in Wonderland
 #
-# Work? - no
+# Work? - not yet
 #
 #
 
@@ -28,8 +29,8 @@ def data_manipulation(file_name):
 	# summarize the loaded data
 	n_chars = len(raw_text)
 	n_vocab = len(chars)
-	print "Total Characters: ", n_chars
-	print "Total Vocab: ", n_vocab
+	print ("Total Characters: ", n_chars)
+	print ("Total Vocab: ", n_vocab)
 
 def make_dataset():
 	# prepare the dataset of input to output pairs encoded as integers
