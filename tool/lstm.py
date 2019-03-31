@@ -32,7 +32,9 @@ def data_manipulation(file_name):
 	print ("Total Characters: ", n_chars)
 	print ("Total Vocab: ", n_vocab)
 
-def make_dataset():
+	return n_chars, n_vocab, raw_text
+
+def make_dataset(n_chars, n_vocab, raw_text):
 	# prepare the dataset of input to output pairs encoded as integers
 	seq_length = 100
 	dataX = []
@@ -43,7 +45,7 @@ def make_dataset():
 		dataX.append([char_to_int[char] for char in seq_in])
 		dataY.append(char_to_int[seq_out])
 	n_patterns = len(dataX)
-	print "Total Patterns: ", n_patterns
+	print ("Total Patterns: ", n_patterns)
 	# reshape X to be [samples, time steps, features]
 	X = numpy.reshape(dataX, (n_patterns, seq_length, 1))
 	# normalize
@@ -51,8 +53,10 @@ def make_dataset():
 	# one hot encode the output variable
 	y = np_utils.to_categorical(dataY)
 
+	return X, y
 
-def train_model():
+
+def train_model(X, y):
 	# define the LSTM model
 	model = Sequential()
 	model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2])))
@@ -65,3 +69,5 @@ def train_model():
 	callbacks_list = [checkpoint]
 	# fit the model
 	model.fit(X, y, epochs=20, batch_size=128, callbacks=callbacks_list)
+
+	
