@@ -32,10 +32,11 @@ def data_manipulation(file_name):
 	print ("Total Characters: ", n_chars)
 	print ("Total Vocab: ", n_vocab)
 
-	return n_chars, n_vocab, raw_text
+	return n_chars, n_vocab, raw_text, char_to_int
 
-def make_dataset(n_chars, n_vocab, raw_text):
+def make_dataset(n_chars, n_vocab, raw_text, char_to_int):
 	# prepare the dataset of input to output pairs encoded as integers
+
 	seq_length = 100
 	dataX = []
 	dataY = []
@@ -69,5 +70,3 @@ def train_model(X, y):
 	callbacks_list = [checkpoint]
 	# fit the model
 	model.fit(X, y, epochs=20, batch_size=128, callbacks=callbacks_list)
-
-	
