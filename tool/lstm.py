@@ -34,7 +34,7 @@ def data_manipulation(file_name):
 
 	return n_chars, n_vocab, raw_text, char_to_int
 
-def make_dataset(n_chars, n_vocab, raw_text, char_to_int):
+def make_dataset(n_chars, n_vocab, raw_textcd ):
 	# prepare the dataset of input to output pairs encoded as integers
 
 	seq_length = 100
@@ -55,7 +55,6 @@ def make_dataset(n_chars, n_vocab, raw_text, char_to_int):
 	y = np_utils.to_categorical(dataY)
 
 	return X, y
-
 
 def train_model(X, y):
 	# define the LSTM model
