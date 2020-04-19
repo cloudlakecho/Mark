@@ -6,10 +6,17 @@
 #   https://machinelearningmastery.com/text-generation-lstm-recurrent-neural-networks-python-keras/
 # 	Small LSTM Network to Generate Text for Alice in Wonderland
 #
-# Work? - not yet
+
+# Hot wo run this code
+# (1) $ python lstm.py
+# (2) Give TXT file location
+#   ex) ../../../../wuthering_heights.txt
+#
+# Work? - not yet?
 #
 #
 
+import pdb
 import numpy
 from keras.models import Sequential
 from keras.layers import Dense
@@ -17,6 +24,9 @@ from keras.layers import Dropout
 from keras.layers import LSTM
 from keras.callbacks import ModelCheckpoint
 from keras.utils import np_utils
+
+
+TESTING = True
 
 
 def data_manipulation(file_name):
@@ -34,7 +44,8 @@ def data_manipulation(file_name):
 
 	return n_chars, n_vocab, raw_text, char_to_int
 
-def make_dataset(n_chars, n_vocab, raw_textcd ):
+
+def make_dataset(n_chars, n_vocab, raw_text, char_to_int):
 	# prepare the dataset of input to output pairs encoded as integers
 
 	seq_length = 100
@@ -54,7 +65,11 @@ def make_dataset(n_chars, n_vocab, raw_textcd ):
 	# one hot encode the output variable
 	y = np_utils.to_categorical(dataY)
 
+	if (TESTING):
+		pdb.set_trace()
+
 	return X, y
+
 
 def train_model(X, y):
 	# define the LSTM model
@@ -69,3 +84,17 @@ def train_model(X, y):
 	callbacks_list = [checkpoint]
 	# fit the model
 	model.fit(X, y, epochs=20, batch_size=128, callbacks=callbacks_list)
+
+
+#
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+#
+def main():
+	file_name = input("Please, give input text file, thanks.")
+	n_chars, n_vocab, raw_text, char_to_int = data_manipulation(file_name)
+	X, y = make_dataset(n_chars, n_vocab, raw_text, char_to_int)
+	train_model(X, y)
+
+
+if __name__ == '__main__':
+    main()
