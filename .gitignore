@@ -31,3 +31,9 @@ someOtherfoler/
 # Neural network training output #
 ###########
 *.hdf5
+
+# Image
+**.jpeg
+**.jpg
+**.png
+**.gif
