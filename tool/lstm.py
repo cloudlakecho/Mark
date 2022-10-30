@@ -26,6 +26,8 @@ from keras.callbacks import ModelCheckpoint
 from keras.utils import np_utils
 
 
+EARLY_DEBUGGING = False
+DEBUGGING = True
 TESTING = True
 
 
@@ -45,10 +47,11 @@ def data_manipulation(file_name):
 	return n_chars, n_vocab, raw_text, char_to_int
 
 
-def make_dataset(n_chars, n_vocab, raw_text, char_to_int):
+def make_dataset(n_chars, n_vocab, raw_text, char_to_int, seq_length):
 	# prepare the dataset of input to output pairs encoded as integers
+	if (seq_lenght == None):
+		seq_length = 100
 
-	seq_length = 100
 	dataX = []
 	dataY = []
 	for i in range(0, n_chars - seq_length, 1):
@@ -71,19 +74,38 @@ def make_dataset(n_chars, n_vocab, raw_text, char_to_int):
 	return X, y
 
 
-def train_model(X, y):
+def train_model(X, y, seq_len=256, drop_out=0.2):
 	# define the LSTM model
 	model = Sequential()
-	model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2])))
-	model.add(Dropout(0.2))
+
+	# To do
+	# Sequence length effect on LSTM design?
+	model.add(LSTM(seq_len, input_shape=(X.shape[1], X.shape[2])))
+
+	model.add(Dropout(drop_out))
 	model.add(Dense(y.shape[1], activation='softmax'))
+
+	# To do
+	# How about on more LSTM and activation?
+	if (DEBUGGING):
+		pdb.set_trace()
+
 	model.compile(loss='categorical_crossentropy', optimizer='adam')
 	# define the checkpoint
 	filepath="weights-improvement-{epoch:02d}-{loss:.4f}.hdf5"
-	checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
+
+	# To do
+	# Not save training record
+	checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1,
+		save_best_only=True, mode='min')
 	callbacks_list = [checkpoint]
+
 	# fit the model
 	model.fit(X, y, epochs=20, batch_size=128, callbacks=callbacks_list)
+
+	if (DEBUGGING):
+		pdb.set_trace()
+
 
 
 #

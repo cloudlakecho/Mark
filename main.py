@@ -15,8 +15,13 @@
 #
 
 import numpy as np
-import sklearn
-from sklearn.decomposition import PCA
+
+try:
+	import sklearn
+except Exception as e:
+	print (e.args)
+else:
+	from sklearn.decomposition import PCA
 
 import keras
 print("Keras impoted")
